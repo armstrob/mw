@@ -35,7 +35,7 @@ var app = {
     onDeviceReady: function () {
         app.receivedEvent('deviceready');
         var mw_c = mwbScanner.getConstants(), settings;
-        settings = [{ 'method': 'MWBsetActiveCodes', 'value': [mw_c.MWB_CODE_MASK_39 | mw_c.MWB_CODE_MASK_DM] }];
+        settings = [{ 'method': 'MWBsetActiveCodes', 'value': [mw_c.MWB_CODE_MASK_DM] }];
         mwbScanner.loadSettings(settings).then(function (response) {
             console.log(response);
         }).catch(function (reason) {
