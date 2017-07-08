@@ -33,7 +33,11 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
+        console.log('Device Ready');
         app.receivedEvent('deviceready');
+        var stat1 = mwbScanner.setKey('oR1hWAczbdMtXTOV4f9C4i879XsBz/HW8PTr2JUxqHI=').then(function (response) {
+            console.log('Setkey done');
+        });
         var mw_c = mwbScanner.getConstants(), settings;
         settings = [{ 'method': 'MWBsetActiveCodes', 'value': [mw_c.MWB_CODE_MASK_DM] }];
         mwbScanner.loadSettings(settings).then(function (response) {
@@ -41,7 +45,11 @@ var app = {
         }).catch(function (reason) {
             console.log(reason);
         });
-        scannerConfig();
+        var stat2 = mwbScanner.loadSettings(settings).then(function (response) {
+            console.log('response ' + response);
+        }).catch(function (reason) {
+            console.log('reason ' + reason);
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
